@@ -4,7 +4,7 @@ module.exports = function(app, client) {
 	
 	// finding the top 10 scores
 	app.get('/scores', (req, res) => {
-		client.collection('scores').find().sort({score:-1}).limit(10).toArray(function (err, list) {
+		client.collection('scores').find({ _id: 0 }).sort({score:-1}).limit(10).toArray(function (err, list) {
       if (err) {
         res.send({'error':'An error has occurred'});
       } else {
@@ -25,8 +25,6 @@ module.exports = function(app, client) {
 		});
 	console.log(req.score)
   });
-  
-    app.put('/notes/:id', (req, res, next) => {
 		const id = req.params.id;
 		const details = { '_id': new ObjectID(id) };
 		const score = { name: req.body.name, score: req.body.score };
