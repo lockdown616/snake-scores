@@ -7,20 +7,20 @@ const cors = require('cors');
 
 const app = express();
 
-const port = 80;
+const port = process.env.PORT || 80;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-app.use(cors())
+app.use(cors());
 
 app.get('/products/:id', function (req, res, next) {
   res.json({msg: 'This is CORS-enabled for all origins!'})
-})
+});
 
 app.listen(80, function () {
   console.log('CORS-enabled web server listening on port 80')
-})
+});
 
 MongoClient.connect(db.url, (err, client) => {
   if (err) return console.log(err)
