@@ -25,15 +25,4 @@ module.exports = function(app, client) {
 		});
 	console.log(req.score)
   });
-		const id = req.params.id;
-		const details = { '_id': new ObjectID(id) };
-		const score = { name: req.body.name, score: req.body.score };
-    db.collection('notes').update(details, note, (err, result) => {
-      if (err) {
-          res.send({'error':'An error has occurred'});
-      } else {
-          res.send(note);
-      } 
-    });
-  });
- }
+}
