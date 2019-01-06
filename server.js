@@ -14,14 +14,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cors());
 
-app.get('/products/:id', function (req, res, next) {
-  res.json({msg: 'This is CORS-enabled for all origins!'})
-});
-
-app.listen(process.env.PORT, function () {
-  console.log('CORS-enabled web server listening on port' + process.env.PORT)
-});
-
 MongoClient.connect(db.url, (err, client) => {
   if (err) return console.log(err)
   
