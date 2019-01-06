@@ -11,7 +11,6 @@ module.exports = function(app, client) {
         res.send(list);
 	}})
     });
-  };
 	
 	
 	// submitting a score
@@ -39,3 +38,4 @@ module.exports = function(app, client) {
       } 
     });
   });
+ }
