@@ -9,7 +9,7 @@ module.exports = function(app, client) {
         res.send({'error':'An error has occurred'});
       } else {
         res.send(list);
-      }
+      })
     });
   });
 	
