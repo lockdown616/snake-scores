@@ -3,15 +3,15 @@ var ObjectID = require('mongodb').ObjectID;
 module.exports = function(app, client) {
 	
 	// finding the top 10 scores
-	app.get('/scores', (req, res, next) => {
+	app.get('/scores', (req, res) => {
 		client.collection('scores').find().sort({score:-1}).limit(10).exec(function (err, list) {
       if (err) {
         res.send({'error':'An error has occurred'});
       } else {
         res.send(list);
-      })
+	}})
     });
-  });
+  };
 	
 	
 	// submitting a score
