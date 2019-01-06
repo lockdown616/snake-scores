@@ -4,7 +4,7 @@ module.exports = function(app, client) {
 	
 	// finding the top 10 scores
 	app.get('/scores', (req, res, next) => {
-		client.collection('scores').find().sort({score:-1}).limit(10).close(details, (err, item) => {
+		client.collection('scores').find().sort({score:-1}).limit(10).close((err, item) => {
       if (err) {
         res.send({'error':'An error has occurred'});
       } else {
