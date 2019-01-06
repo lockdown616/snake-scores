@@ -4,7 +4,13 @@ module.exports = function(app, client) {
 	
 	// finding the top 10 scores
 	app.get('/scores', (req, res, next) => {
-		var topScores = client.collection('scores').find().sort({score:-1}).limit(10);
+		client.collection('scores').find().sort({score:-1}).limit(10).close(details, (err, item) => {
+      if (err) {
+        res.send({'error':'An error has occurred'});
+      } else {
+        res.send(item);
+      }
+    });
 		res.send(topScores);
   });
 	
