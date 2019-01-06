@@ -5,7 +5,6 @@ module.exports = function(app, client) {
 	// finding the top 10 scores
 	app.get('/scores', (req, res, next) => {
 		var topScores = client.collection('scores').find().sort({score:-1}).limit(10);
-		cursor.close();
 		res.send(topScores);
   });
 	
