@@ -27,21 +27,21 @@ module.exports = function (app, client) {
 	// submitting scores
 	app.post('/scores', (req, res, next) => {
 		if (!req.body.hasOwnProperty("name") || !req.body.hasOwnProperty("score")) {
-			console.log("Received an invalid input");
+			console.log("Received an invalid input: object lacks required properties");
 			res.send({ 'error': 'Invalid input' });
 			return;
 		}
 
-		if (typeof req.body.name !== 'string' || typeof req.body.score !== 'number') {
-			console.log("Received an invalid input");
+		if (typeof req.body.name != 'string' || typeof req.body.score != 'number') {
+			console.log("Received an invalid input: incorrect type");
 			res.send({ 'error': 'Invalid input' });
 			return;
 		}
 
 		const alphaNumericRegex = /^[a-z0-9]{0,11}$/i;
 
-		if (!alphaNumericRegex.test(req.body.name) || req.body.score > 999) {
-			console.log("Received an invalid input");
+		if (alphaNumericRegex.test(req.body.name) == false || req.body.score > 999) {
+			console.log("Received an invalid input: ");
 			res.send({ 'error': 'Invalid input' });
 			return;
 		}
