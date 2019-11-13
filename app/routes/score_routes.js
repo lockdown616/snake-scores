@@ -34,7 +34,7 @@ module.exports = function (app, client) {
 
 		const score = { name: req.body.name, score: req.body.score };
 
-		if (typeof score.name != 'string' || typeof score.score != 'number') {
+		if ((typeof score.name !== 'string' && !score.name instanceof String) || isNaN(score.score)) {
 			console.log("Received an invalid input: incorrect type");
 			res.send({ 'error': 'Invalid input' });
 			return;
