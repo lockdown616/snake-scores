@@ -32,7 +32,9 @@ module.exports = function (app, client) {
 			return;
 		}
 
-		if (typeof req.body.name != 'string' || typeof req.body.score != 'number') {
+		const score = { name: req.body.name, score: req.body.score };
+
+		if (typeof score.name != 'string' || typeof score.score != 'number') {
 			console.log("Received an invalid input: incorrect type");
 			res.send({ 'error': 'Invalid input' });
 			return;
@@ -40,13 +42,12 @@ module.exports = function (app, client) {
 
 		const alphaNumericRegex = /^[a-z0-9]{0,11}$/i;
 
-		if (alphaNumericRegex.test(req.body.name) == false || req.body.score > 999) {
-			console.log("Received an invalid input: ");
+		if (alphaNumericRegex.test(score.name) == false || score.score > 999) {
+			console.log("Received an invalid input: sanity check failed");
 			res.send({ 'error': 'Invalid input' });
 			return;
 		}
 
-		const score = { name: req.body.name, score: req.body.score };
 
 		client.collection('scores').insertOne(score, (err, result) => {
 			if (err) {
