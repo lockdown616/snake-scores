@@ -15,12 +15,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 MongoClient.connect(db.url, (err, client) => {
-  if (err) return console.log(err)
-  
-  client = client.db("snake-scores")
+  if (err) return console.log(err);
+
+  client = client.db("snake-scores");
   require('./app/routes')(app, client);
 
   app.listen(port, () => {
     console.log('We are live on ' + port);
-  });               
+  });
 })
